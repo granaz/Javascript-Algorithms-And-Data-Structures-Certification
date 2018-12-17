@@ -1,17 +1,21 @@
 function convertToRoman(num) {
-    let arrNumerals = ['M', 'CM', 'D', 'CD', 'C', 'XC', 'L', 'XL', 'X', 'IX', 'V', 'IV', 'I'],
-        arrNumber = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1];
+    // Set the parameters
+    let arrRomans = ["I", "IV", "V", "IX", "X", "XL", "L", "XC", "C", "CD", "D", "CM", "M"];
+    let arrNumerals = [1, 4, 5, 9, 10, 40, 50, 90, 100, 400, 500, 900, 1000];
 
-    // The output roman numeral
-    let myRoman = "", myNum = num;
+    let myRoman = "";
 
-    // Run the numeral first, then run the numbers to get into the right one;
-    for(let i = 0; i < arrNumerals.length; i++){
-        while(arrNumber[i] <= myNum){
-            myRoman += arrNumerals[i];
-            myNum -= arrNumber[i];
+    // Subtract the number from the array, so you can convert the numeral to roman;
+    // i.e.: 1554 -> 1554-1000 (M) -> 554-500 (MD) -> 54-50 (MDL) -> 4-4 (MDLIV);
+    for(let i = arrNumerals.length; i >= 0; i--){
+        if(num >= arrNumerals[i]){
+            myRoman += arrRomans[i];
+            num -= arrNumerals[i];
+
+            // Put the needle in the beginning
+            i = 13;
         }
-    }    
+    }
 
     return myRoman;
 }
