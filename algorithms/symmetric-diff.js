@@ -1,9 +1,7 @@
 function sym(args) {
   var pre = [...arguments];
 
-  return pre.reduce(diff);
-
-  function diff(arrTo, arrFrom) {
+  return pre.reduce((arrTo, arrFrom) => {
     let arr1, arr2, result;
 
     arr1 = arrTo.filter(item => {
@@ -19,5 +17,5 @@ function sym(args) {
     return result.filter((item, index, self) => {
       return index == self.indexOf(item);
     });
-  }
+  });  
 }
